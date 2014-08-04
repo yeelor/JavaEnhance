@@ -6,7 +6,7 @@ public class MyAdvice implements Advice {
 	long beginTime = 0;
 	public void afterMethod(Method method) {
 		// TODO Auto-generated method stub
-		System.out.println("´Ó´«ÖÇ²¥¿Í±ÏÒµÉÏ°àÀ²£¡");		
+		System.out.println("ä»ä¼ æ™ºæ’­å®¢æ¯•ä¸šä¸Šç­å•¦ï¼");		
 		long endTime = System.currentTimeMillis();
 		System.out.println(method.getName() + " running time of " + (endTime - beginTime));
 
@@ -14,7 +14,7 @@ public class MyAdvice implements Advice {
 
 	public void beforeMethod(Method method) {
 		// TODO Auto-generated method stub
-		System.out.println("µ½´«ÖÇ²¥¿ÍÀ´Ñ§Ï°À²£¡");
+		System.out.println("åˆ°ä¼ æ™ºæ’­å®¢æ¥å­¦ä¹ å•¦ï¼");
 		beginTime = System.currentTimeMillis();
 	}
 

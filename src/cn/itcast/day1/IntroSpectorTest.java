@@ -29,19 +29,19 @@ public class IntroSpectorTest {
 		
 		setProperties(pt1, propertyName, value);
 
-		System.out.println(BeanUtils.getProperty(pt1, "x").getClass().getName());
+		System.out.println(BeanUtils.getProperty(pt1, "x").getClass().getName());//æ˜¯java.lang.String
 		BeanUtils.setProperty(pt1, "x", "9");
 		System.out.println(pt1.getX());
 		/*
-		//java7µÄĞÂÌØĞÔ
+		//java7çš„æ–°ç‰¹æ€§
 		Map map = {name:"zxx",age:18};
 		BeanUtils.setProperty(map, "name", "lhm");
 		*/
 		BeanUtils.setProperty(pt1, "birthday.time", "111");
 		System.out.println(BeanUtils.getProperty(pt1, "birthday.time"));
 		
-		PropertyUtils.setProperty(pt1, "x", 9);
-		System.out.println(PropertyUtils.getProperty(pt1, "x").getClass().getName());
+		PropertyUtils.setProperty(pt1, "x", 9);//ç›´æ¥ç”¨9ï¼Œä¸ç”¨å­—ç¬¦ä¸²
+		System.out.println(PropertyUtils.getProperty(pt1, "x").getClass().getName());//æ˜¯java.lang.Integer
 		
 	}
 

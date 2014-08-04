@@ -17,6 +17,7 @@ public class ProxyTest {
 		Class clazzProxy1 = Proxy.getProxyClass(Collection.class.getClassLoader(), Collection.class);
 		System.out.println(clazzProxy1.getName());
 		
+		//发现只有一个带参数的构造函数
 		System.out.println("----------begin constructors list----------");
 		/*$Proxy0()
 		$Proxy0(InvocationHandler,int)*/
@@ -67,6 +68,7 @@ public class ProxyTest {
 		}
 		Collection proxy1 = (Collection)constructor.newInstance(new MyInvocationHander1());
 		
+		// hashCode, equals, or toString methods  从Object继承来的只有这三个方法交给Hander
 		System.out.println(proxy1);
 		proxy1.clear();
 		//proxy1.size();
@@ -81,6 +83,25 @@ public class ProxyTest {
 			
 		});
 		
+	
+		Collection proxy4 =(Collection) Proxy.newProxyInstance(Collection.class.getClassLoader(),new Class[]{ Collection.class}, new InvocationHandler() {
+			
+			ArrayList target = new ArrayList();	
+			@Override
+			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+				long beginTime = System.currentTimeMillis();
+				Object retVal = method.invoke(target, args);
+				long endTime = System.currentTimeMillis();
+				System.out.println(method.getName() + " running time of " + (endTime - beginTime));
+				return retVal;
+			}
+		});
+		proxy4.add("zxx");
+		proxy4.add("lhm");
+		proxy4.add("bxd");
+		System.out.println(proxy4.size());
+		
+		
 		final ArrayList target = new ArrayList();			
 		Collection proxy3 = (Collection)getProxy(target,new MyAdvice());
 		proxy3.add("zxx");
@@ -90,6 +111,13 @@ public class ProxyTest {
 		System.out.println(proxy3.getClass().getName());
 	}
 
+	/**
+	 * 生成代理的通用方法
+	 * 以后只需要写MyAdvice就可以了
+	 * @param target
+	 * @param advice
+	 * @return
+	 */
 	private static Object getProxy(final Object target,final Advice advice) {
 		Object proxy3 = Proxy.newProxyInstance(
 				target.getClass().getClassLoader(),

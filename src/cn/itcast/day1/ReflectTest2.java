@@ -18,6 +18,7 @@ public class ReflectTest2 {
 		一定要记住用完整的路径，但完整的路径不是硬编码，而是运算出来的。*/
 		//InputStream ips = new FileInputStream("config.properties");
 		
+		//只读。框架就是这么干的，用类加载器来加载。比如spring
 		//InputStream ips = ReflectTest2.class.getClassLoader().getResourceAsStream("cn/itcast/day1/config.properties");
 		//InputStream ips = ReflectTest2.class.getResourceAsStream("resources/config.properties");
 		InputStream ips = ReflectTest2.class.getResourceAsStream("/cn/itcast/day1/resources/config.properties");
